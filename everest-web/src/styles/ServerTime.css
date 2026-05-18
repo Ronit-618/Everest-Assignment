@@ -1,0 +1,47 @@
+.server-time-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.server-time-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+.time-display-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.time-display {
+  font-family: 'DM Serif Display', serif;
+  font-size: 4rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.date-display {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 1.1rem;
+}
+
+.refresh-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+}

@@ -1,0 +1,67 @@
+.users-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.users-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+.user-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem;
+}
+
+.add-button {
+  padding: 0.75rem 2rem;
+  white-space: nowrap;
+}
+
+.refresh-button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.users-table-container {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.users-table th {
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: var(--background);
+}
+
+.users-table tr:last-child td {
+  border-bottom: none;
+}
+
+.users-table tr:hover {
+  background-color: rgba(200, 169, 110, 0.05);
+}
