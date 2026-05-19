@@ -1,0 +1,2 @@
+Hello from the Everest server!
+This file was downloaded via the REST API.
