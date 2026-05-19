@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IP Region Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 16px;
+            margin: 0;
+            background: #16213e;
+            font-size: 20px;
+        }
+
+        #map {
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>IP Addresses by Region</h1>
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    const map = L.map('map').setView([35.8617, 104.1954], 4);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © OpenStreetMap contributors'
+    }).addTo(map);
+
+    const regionData = [
+        { name: "San Antonio",   count: 2, lat: 29.4969,  lon: -98.4032,  country: "US" },
+        { name: "Sydney",        count: 4, lat: -33.8688, lon: 151.2093,  country: "AU" },
+        { name: "Beijing",       count: 3, lat: 39.9042,  lon: 116.4074,  country: "CN" },
+        { name: "Shanghai",      count: 2, lat: 31.2304,  lon: 121.4737,  country: "CN" },
+        { name: "Guangzhou",     count: 1, lat: 23.1291,  lon: 113.2644,  country: "CN" },
+        { name: "Sao Paulo",     count: 3, lat: -23.5505, lon: -46.6333,  country: "BR" },
+        { name: "Moscow",        count: 1, lat: 55.7558,  lon: 37.6173,   country: "RU" },
+        { name: "Luxembourg",    count: 1, lat: 49.6117,  lon: 6.1319,    country: "LU" },
+        { name: "Dublin",        count: 1, lat: 53.3498,  lon: -6.2603,   country: "IE" },
+        { name: "Singapore",     count: 1, lat: 1.3521,   lon: 103.8198,  country: "SG" },
+        { name: "Milan",         count: 1, lat: 45.4642,  lon: 9.1900,    country: "IT" },
+        { "name": "Kathmandu", "count": 1, "lat": 27.7172, "lon": 85.3240, "country": "NP" }
+
+    ];
+    
+    const maxCount = Math.max(...regionData.map(r => r.count));
+
+    for (const region of regionData) {
+
+        const radius = 20000 + (region.count / maxCount) * 60000;
+
+        const circle = L.circle([region.lat, region.lon], {
+            color: '#e94560',
+            fillColor: '#e94560',
+            fillOpacity: 0.5,
+            radius: radius
+        }).addTo(map);
+
+        circle.bindPopup(
+            '<b>' + region.name + '</b><br>' +
+            'Country: ' + region.country + '<br>' +
+            'IP Count: ' + region.count
+        );
+    }
+</script>
+
+</body>
+</html>

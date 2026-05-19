@@ -1,0 +1,114 @@
+[
+  {
+    "name": "US",
+    "count": 3,
+    "lat": 37.751,
+    "lon": -97.822,
+    "country": "US"
+  },
+  {
+    "name": "AU",
+    "count": 2,
+    "lat": 0,
+    "lon": 0,
+    "country": "AU"
+  },
+  {
+    "name": "CN",
+    "count": 5,
+    "lat": 34.7732,
+    "lon": 113.722,
+    "country": "CN"
+  },
+  {
+    "name": "Hangzhou",
+    "count": 1,
+    "lat": 30.2994,
+    "lon": 120.1612,
+    "country": "CN"
+  },
+  {
+    "name": "São Paulo",
+    "count": 1,
+    "lat": -23.6283,
+    "lon": -46.6409,
+    "country": "BR"
+  },
+  {
+    "name": "BR",
+    "count": 1,
+    "lat": -22.8305,
+    "lon": -43.2192,
+    "country": "BR"
+  },
+  {
+    "name": "Rio de Janeiro",
+    "count": 1,
+    "lat": -22.9485,
+    "lon": -43.3436,
+    "country": "BR"
+  },
+  {
+    "name": "RU",
+    "count": 1,
+    "lat": 55.7386,
+    "lon": 37.6068,
+    "country": "RU"
+  },
+  {
+    "name": "LU",
+    "count": 1,
+    "lat": 49.7498,
+    "lon": 6.1661,
+    "country": "LU"
+  },
+  {
+    "name": "IE",
+    "count": 1,
+    "lat": 53.3472,
+    "lon": -6.2439,
+    "country": "IE"
+  },
+  {
+    "name": "Sydney",
+    "count": 1,
+    "lat": -33.8715,
+    "lon": 151.2006,
+    "country": "AU"
+  },
+  {
+    "name": "Singapore",
+    "count": 1,
+    "lat": 1.3036,
+    "lon": 103.8554,
+    "country": "SG"
+  },
+  {
+    "name": "Fremont",
+    "count": 1,
+    "lat": 37.5625,
+    "lon": -122.0004,
+    "country": "US"
+  },
+  {
+    "name": "Gold Coast",
+    "count": 1,
+    "lat": -27.97,
+    "lon": 153.3662,
+    "country": "AU"
+  },
+  {
+    "name": "Monterotondo",
+    "count": 1,
+    "lat": 42.0475,
+    "lon": 12.6282,
+    "country": "IT"
+  },
+  {
+    "name": "Kathmandu",
+    "count": 1,
+    "lat": 27.7172,
+    "lon": 85.3240,
+    "country": "NP"
+  }
+]
