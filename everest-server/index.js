@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
-// Multer - disk storage for /upload
 const diskStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = path.join(__dirname, 'upload')
@@ -30,7 +29,6 @@ const diskStorage = multer.diskStorage({
 
 const uploadDisk = multer({ storage: diskStorage })
 
-// Multer - memory storage for /validate-json
 const uploadMemory = multer({ storage: multer.memoryStorage() })
 
 // MySQL connection
@@ -171,7 +169,6 @@ app.post('/lookup-ip', (req, res) => {
   }
 })
 
-// Start server
 app.listen(PORT, () => {
   console.log(`everest-server running on http://localhost:${PORT}`)
   console.log('Routes:')
