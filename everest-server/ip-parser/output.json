@@ -1,0 +1,79 @@
+[
+  {
+    "name": "CN",
+    "count": 5,
+    "lat": 34.7732,
+    "lon": 113.722,
+    "country": "CN"
+  },
+  {
+    "name": "US",
+    "count": 1,
+    "lat": 37.751,
+    "lon": -97.822,
+    "country": "US"
+  },
+  {
+    "name": "AU",
+    "count": 1,
+    "lat": 0,
+    "lon": 0,
+    "country": "AU"
+  },
+  {
+    "name": "Hangzhou",
+    "count": 1,
+    "lat": 30.2994,
+    "lon": 120.1612,
+    "country": "CN"
+  },
+  {
+    "name": "São Paulo",
+    "count": 1,
+    "lat": -23.6283,
+    "lon": -46.6409,
+    "country": "BR"
+  },
+  {
+    "name": "RU",
+    "count": 1,
+    "lat": 55.7386,
+    "lon": 37.6068,
+    "country": "RU"
+  },
+  {
+    "name": "Fremont",
+    "count": 1,
+    "lat": 37.5625,
+    "lon": -122.0004,
+    "country": "US"
+  },
+  {
+    "name": "Gold Coast",
+    "count": 1,
+    "lat": -27.97,
+    "lon": 153.3662,
+    "country": "AU"
+  },
+  {
+    "name": "Sydney",
+    "count": 1,
+    "lat": -33.8715,
+    "lon": 151.2006,
+    "country": "AU"
+  },
+  {
+    "name": "Singapore",
+    "count": 1,
+    "lat": 1.3036,
+    "lon": 103.8554,
+    "country": "SG"
+  },
+  {
+    "name": "IE",
+    "count": 1,
+    "lat": 53.3472,
+    "lon": -6.2439,
+    "country": "IE"
+  }
+]

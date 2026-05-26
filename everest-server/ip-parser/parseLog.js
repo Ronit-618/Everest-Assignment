@@ -1,65 +1,70 @@
-const geoip = require('fast-geoip')
-const fs = require('fs')
+const fs    = require('fs');
+const geoip = require('../node_modules/fast-geoip');
 
-const args = process.argv.slice(2)
-
-if (args.length !== 1) {
-  console.log('Usage: node parseLog.js <ipFile>')
-  console.log('Example: node parseLog.js ip.txt')
-  process.exit(1)
+async function loadIPs(filepath) {
+    const content = fs.readFileSync(filepath, 'utf-8');
+    return content.split('\n').map(l => l.trim()).filter(l => l !== '');
 }
 
-const ipFile = args[0]
+async function aggregateByRegion(ips) {
+    const regionMap = {};
 
-if (!fs.existsSync(ipFile)) {
-  console.error(`IP file "${ipFile}" does not exist`)
-  process.exit(1)
-}
+    for (const ip of ips) {
+        const geo = await geoip.lookup(ip);
 
-const ips = fs.readFileSync(ipFile, 'utf-8').trim().split('\n').filter(ip => ip.trim())
+        if (!geo) continue;
 
-console.log(`Processing ${ips.length} IP addresses...`)
+        const key = geo.city || geo.region || geo.country;
 
-const results = []
-const cityCounts = {}
+        if (!regionMap[key]) {
+            regionMap[key] = {
+                count:   0,
+                lat:     geo.ll[0],
+                lon:     geo.ll[1],
+                country: geo.country
+            };
+        }
 
-ips.forEach(ip => {
-  const geo = geoip.lookup(ip)
-  
-  if (geo) {
-    const city = geo.city || 'Unknown'
-    const country = geo.country || 'Unknown'
-    const lat = geo.ll ? geo.ll[0] : null
-    const lon = geo.ll ? geo.ll[1] : null
-    
-    if (!cityCounts[city]) {
-      cityCounts[city] = {
-        count: 0,
-        lat: lat,
-        lon: lon,
-        country: country
-      }
+        regionMap[key].count++;
     }
-    cityCounts[city].count++
-  }
-})
 
-// Convert to array and sort by count descending
-const sortedResults = Object.entries(cityCounts)
-  .map(([name, data]) => ({
-    name,
-    count: data.count,
-    lat: data.lat,
-    lon: data.lon,
-    country: data.country
-  }))
-  .sort((a, b) => b.count - a.count)
+    return regionMap;
+}
 
-console.log('\nResults (sorted by count):')
-sortedResults.forEach(result => {
-  console.log(`${result.name}: ${result.count} (Country: ${result.country}, Lat: ${result.lat}, Lon: ${result.lon})`)
-})
+async function main() {
+    const filepath = process.argv[2];
 
-// Save to output.json
-fs.writeFileSync('output.json', JSON.stringify(sortedResults, null, 2))
-console.log('\nResults saved to output.json')
+    if (!filepath) {
+        console.log('Usage: node parseLog.js <ip-file.txt>');
+        return;
+    }
+
+    if (!fs.existsSync(filepath)) {
+        console.log('Error: File not found: ' + filepath);
+        return;
+    }
+
+    const ips = await loadIPs(filepath);
+    console.log('Found ' + ips.length + ' IPs. Looking up regions...');
+
+    const regionMap = await aggregateByRegion(ips);
+
+    console.log('\n===== IP Aggregation by Region =====\n');
+    const sorted = Object.entries(regionMap).sort((a, b) => b[1].count - a[1].count);
+    for (const [region, data] of sorted) {
+        console.log('  ' + region + ' (' + data.country + '): ' + data.count + ' IP(s)');
+    }
+
+    const output = sorted.map(([name, data]) => ({
+        name:    name,
+        count:   data.count,
+        lat:     data.lat,
+        lon:     data.lon,
+        country: data.country
+    }));
+
+    fs.writeFileSync('output.json', JSON.stringify(output, null, 2), 'utf-8');
+    console.log('\nSaved to output.json');
+}
+
+main();
